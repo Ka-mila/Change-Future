@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Carrito de compras - Change Future"
+    >
+    <title>Carrito | Change Future</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            Change Future
+        </a>
+        <nav class="nav">
+            <a href="index.html">
+                Inicio
+            </a>
+            <a href="Catalogo.html">
+                Catálogo
+            </a>
+            <a href="index.html#personalizados">
+                Personalizados
+            </a>
+            <a href="index.html#nosotros">
+                Nosotros
+            </a>
+            <a href="index.html#contacto">
+                Contacto
+            </a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="carrito.html" class="cart-link">
+                🛒
+                 <span>Carrito</span>
+                 <span id="cart-count">0</span> 
+            </a>
+            <a href="index.html#contacto" class="btn-header">
+                Cotizar
+            </a>
+
+        </div>
+
+    </header>
+    <!-- ========================= -->
+    <!-- CARRITO -->
+    <!-- ========================= -->
+    <main class="cart-page">
+        <section class="cart-container">
+            <div class="cart-header">
+                <span>
+                    CHANGE FUTURE
+                </span>
+                <h1>
+                    Tu carrito
+                </h1>
+                <p>
+                    Revisa los productos que quieres comprar.
+                </p>
+            </div>
+            <!-- PRODUCTOS -->
+            <div id="cart-items" class="cart-items">  
+                <!-- JavaScript mostrará aquí los productos -->
+            </div>
+            <!-- RESUMEN -->
+            <div class="cart-summary">
+                <div>
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong id="cart-total">
+                        $0
+                    </strong>
+                </div>
+                <div class="cart-buttons">
+                    <a
+                        href="Catalogo.html"
+                        class="btn-secondary"
+                    >
+                        Seguir comprando
+                    </a>
+                    <button
+                        type="button"
+                        class="btn-primary"
+                    >
+                        Finalizar compra
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
+
+    <footer class="footer">
+        <p> © 2026 Change Future. Todos los derechos reservados.  </p>
+    </footer>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
