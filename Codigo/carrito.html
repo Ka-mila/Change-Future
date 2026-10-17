@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090b1b">
+    <meta name="description" content="Revisa los productos de tu carrito Change Future.">
+    <title>Carrito | Change Future</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="assets/js/app.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="wrap nav">
+            <a class="brand" href="index.html">
+            <span class="brand-mark">CF</span>
+            <span>Change <em>Future</em></span></a>
+            <button class="menu-toggle" data-menu-toggle aria-label="Abrir menú">☰</button>
+            <nav class="nav-links" data-nav>
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a href="crea-desde-cero.html">Crea desde cero</a>
+                <a href="nosotros.html">Nosotros</a>
+            </nav>
+            <div class="nav-actions">
+                <a class="cart-link" href="carrito.html" aria-label="Carrito">🛒 <span class="cart-count" data-cart-count>0</span></a>
+                <a class="login-link" href="login.html" data-account-link>Ingresar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="section">
+        <div class="wrap">
+            <div class="eyebrow">TU PEDIDO</div>
+            <div class="section-heading">
+                <h1>Tu <span class="lime">carrito</span></h1>
+                <a class="text-link" href="catalogo.html">← Seguir viendo productos</a>
+            </div>
+
+            <section class="empty-state cart-list" data-empty-cart>
+                <div class="empty-icon">🛒</div>
+                <h2>Tu carrito está vacío</h2>
+                <p>Cuando encuentres algo que te guste, agrégalo aquí.</p>
+                <a class="btn" href="catalogo.html">Explorar catálogo&nbsp; →</a>
+            </section>
+
+            <div class="cart-layout hidden" data-cart-content>
+                <section class="cart-list">
+                    <h2 class="summary-title">Productos seleccionados</h2>
+                    <div data-cart-container></div>
+                </section>
+                <aside class="cart-summary">
+                    <h2 class="summary-title">Resumen del pedido</h2>
+                    <div class="summary-row"><span>Subtotal productos</span><b data-subtotal>$0</b></div>
+                    <div class="summary-row"><span>Envío</span><b>A coordinar</b></div>
+                    <div class="summary-row total"><span>Total productos</span><b data-total>$0</b></div>
+                    <p class="summary-note">
+                        El envío se coordina según la comuna de destino. El pago y la confirmación del pedido se podrán conectar después.
+                    </p>
+                   <form class="order-form" data-order-form>
+    <label class="form-label" for="order-customer-name">Tu nombre</label>
+    <input class="field" id="order-customer-name" name="customerName"
+        type="text" placeholder="Nombre completo" required>
+    <label class="form-label" for="order-customer-phone">Tu teléfono</label>
+    <input class="field" id="order-customer-phone" name="customerPhone"
+     type="tel" placeholder="+56 9 1234 5678" autocomplete="tel" required>
+    <label class="form-label" for="order-delivery-method">¿Cómo quieres recibirlo?</label>
+    <select class="field" id="order-delivery-method" name="deliveryMethod"
+        data-delivery-method required>
+        <option value="">Elige una opción</option>
+        <option value="blue">Despacho Blue Express</option>
+        <option value="metro">Entrega en Metro</option>
+    </select>
+
+    <div data-blue-fields hidden>
+        <label class="form-label" for="order-commune">Comuna</label>
+        <input class="field" id="order-commune" name="commune"
+            type="text" placeholder="Tu comuna">
+
+        <label class="form-label" for="order-address">Dirección</label>
+        <input class="field" id="order-address" name="address"
+            type="text" placeholder="Calle y número">
+
+        <label class="form-label" for="order-reference">Referencia (opcional)</label>
+        <input class="field" id="order-reference" name="reference"
+            type="text" placeholder="Casa, departamento u otra referencia">
+    </div>
+
+    <div data-metro-fields hidden>
+        <label class="form-label" for="order-metro-station">Estación</label>
+        <select class="field" id="order-metro-station" name="metroStation">
+            <option value="">Elige una estación</option>
+            <option value="Rojas Magallanes">Rojas Magallanes</option>
+            <option value="Bellavista de La Florida">Bellavista de La Florida</option>
+        </select>
+
+        <label class="form-label" for="order-meeting-time">Horario que prefieres</label>
+        <input class="field" id="order-meeting-time" name="meetingTime"
+            type="text" placeholder="Ej.: sábado por la tarde">
+    </div>
+
+    <button class="btn" type="button" data-whatsapp-order>
+        Enviar pedido por WhatsApp&nbsp; →
+    </button>
+</form>
+                    <a class="btn" href="catalogo.html">Seguir comprando&nbsp; →</a>
+                    <p class="muted" style="margin: 12px 0 0; font-size: 10px; text-align: center;">
+                        El carrito se guarda en este navegador. El sitio todavía no procesa pagos.
+                    </p>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-top">
+                <a class="brand" href="index.html"><span class="brand-mark">CF</span><span>Change <em>Future</em></span></a>
+                <nav class="footer-links">
+                    <a href="index.html">Inicio</a><a href="catalogo.html">Catálogo</a>
+                    <a href="crea-desde-cero.html">Crea desde cero</a><a href="nosotros.html">Nosotros</a>
+                </nav>
+                <span>Impresión 3D · Diseño · Personalización</span>
+            </div>
+            <div class="footer-bottom"><span>© 2026 Change Future.</span><span>Hecho en Chile, pensado para ti.</span></div>
+        </div>
+    </footer>
+    <div class="toast" data-toast></div>
+</body>
+</html>

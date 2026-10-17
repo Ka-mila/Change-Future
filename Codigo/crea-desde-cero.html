@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090b1b">
+    <meta name="description" content="Cuéntanos tu idea y la convertimos en una pieza impresa en 3D.">
+    <title>Crea desde cero | Change Future</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="assets/js/app.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="wrap nav">
+            <a class="brand" href="index.html"><span class="brand-mark">CF</span><span>Change <em>Future</em></span></a>
+            <button class="menu-toggle" data-menu-toggle aria-label="Abrir menú">☰</button>
+            <nav class="nav-links" data-nav>
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html">Catálogo</a>
+                <a class="active" href="crea-desde-cero.html">Crea desde cero</a>
+                <a href="nosotros.html">Nosotros</a>
+            </nav>
+            <div class="nav-actions">
+                <a class="cart-link" href="carrito.html" aria-label="Carrito">🛒 <span class="cart-count" data-cart-count>0</span></a>
+                <a class="login-link" href="login.html" data-account-link>Ingresar</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="wrap hero-grid">
+                <div>
+                    <div class="eyebrow">TU IDEA, EN TUS MANOS</div>
+                    <h1>Imagina.<br><span class="lime">Lo creamos.</span></h1>
+                    <p class="hero-copy">
+                        ¿Tienes una idea que todavía no existe? Cuéntanos qué imaginas
+                        y te ayudamos a convertirla en una pieza única, diseñada y fabricada en 3D.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn" href="#solicitud">Empezar mi proyecto&nbsp; →</a>
+                        <a class="btn secondary" href="#proceso">Cómo funciona</a>
+                    </div>
+                    <p class="muted" style="margin-top: 15px; font-size: 11px;">Sin compromiso · Te acompañamos en cada paso</p>
+                </div>
+                <div class="hero-art">
+                    <img
+                        src="https://images.unsplash.com/photo-1760894942780-2b4b82a42ac3?auto=format&fit=crop&w=1400&q=85"
+                        alt="Proceso de impresión 3D iluminado en tonos violeta y verde"
+                    >
+                    <div class="art-label">IDEAS QUE<b>SE VUELVEN REALES</b></div>
+                    <div class="photo-credit">
+                        Foto: <a href="https://unsplash.com/photos/3d-printer-head-creating-object-with-purple-and-green-lights-NbJLUsYKUUI" target="_blank" rel="noopener">Jakub Żerdzicki / Unsplash</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="stepbar" aria-label="Pasos del formulario">
+            <span class="active" data-step-indicator><b>1</b>Tu idea</span>
+            <span data-step-indicator><b>2</b>Detalles</span>
+            <span data-step-indicator><b>3</b>Contacto</span>
+            <span data-step-indicator><b>✓</b>Listo</span>
+        </div>
+
+        <section class="section" id="solicitud">
+            <div class="wrap">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">DISEÑO A TU MEDIDA</div>
+                        <h2>Empecemos <span class="lime">a crear</span></h2>
+                    </div>
+                    <p>Completa lo que ya sabes. Lo demás lo conversamos.</p>
+                </div>
+
+                <div class="wizard">
+                    <form class="form-panel" data-idea-form>
+                        <section class="form-step active" data-form-step="0">
+                            <h2>¿Qué tienes en mente?</h2>
+                            <p class="form-hint">Elige la categoría más cercana. Si no sabes, selecciona “Algo diferente”.</p>
+                            <span class="form-label">Quiero crear...</span>
+                            <div class="choice-grid" data-choice-group="kind">
+                                <button class="choice" type="button" data-choice="Figura o personaje"><b>♟ Figura o personaje</b><small>Mascotas, modelos, coleccionables</small></button>
+                                <button class="choice" type="button" data-choice="Decoración"><b>◈ Decoración</b><small>Objetos para tus espacios</small></button>
+                                <button class="choice" type="button" data-choice="Accesorio funcional"><b>⌘ Accesorio funcional</b><small>Soportes, repuestos, organizadores</small></button>
+                                <button class="choice" type="button" data-choice="Regalo personalizado"><b>✦ Regalo personalizado</b><small>Nombres, fechas y recuerdos</small></button>
+                                <button class="choice" type="button" data-choice="Algo diferente"><b>＋ Algo diferente</b><small>Cuéntanos qué imaginas</small></button>
+                            </div>
+                            <label class="form-label" for="idea-description">Describe tu idea</label>
+                            <textarea class="field" id="idea-description" name="idea" placeholder="Ejemplo: quiero un soporte para mis audífonos con el nombre de mi equipo..."></textarea>
+                            <div class="wizard-footer">
+                                <span class="step-count">Paso 1 de 3</span>
+                                <button class="btn" type="button" data-next-step>Siguiente&nbsp; →</button>
+                            </div>
+                        </section>
+
+                        <section class="form-step" data-form-step="1">
+                            <h2>Démosle forma</h2>
+                            <p class="form-hint">Estas referencias nos ayudan a imaginar contigo. Puedes ajustar los detalles después.</p>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label" for="idea-size">Tamaño aproximado</label>
+                                    <select class="field" id="idea-size" name="size">
+                                        <option>Aún no lo sé</option>
+                                        <option>Pequeño · hasta 10 cm</option>
+                                        <option>Mediano · 10 a 20 cm</option>
+                                        <option>Grande · más de 20 cm</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label" for="idea-quantity">¿Cuántas unidades?</label>
+                                    <select class="field" id="idea-quantity" name="quantity">
+                                        <option>1 unidad</option>
+                                        <option>2 a 5 unidades</option>
+                                        <option>6 o más unidades</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <span class="form-label">Color o acabado</span>
+                            <div class="choice-grid" data-choice-group="color">
+                                <button class="choice" type="button" data-choice="Oscuro"><b>● Oscuro</b><small>Negro, grafito, morado</small></button>
+                                <button class="choice" type="button" data-choice="Claro"><b>◐ Claro</b><small>Blanco, crema, gris</small></button>
+                                <button class="choice" type="button" data-choice="Colorido"><b>✺ Colorido</b><small>Un tono que destaque</small></button>
+                                <button class="choice" type="button" data-choice="Por conversar"><b>? Lo conversamos</b><small>Te recomendamos opciones</small></button>
+                            </div>
+                            <label class="form-label" for="idea-reference">Imagen de referencia <span class="muted">(opcional)</span></label>
+                            <label class="upload" for="idea-reference">
+                                <strong>＋ Adjuntar una imagen</strong>
+                                JPG, PNG o PDF
+                                <input type="file" id="idea-reference" name="reference" accept="image/*,.pdf">
+                            </label>
+                            <p class="muted" data-file-name style="margin: 8px 0 0; font-size: 10px;"></p>
+                            <div class="wizard-footer">
+                                <button class="btn secondary" type="button" data-prev-step>← Volver</button>
+                                <span class="step-count">Paso 2 de 3</span>
+                                <button class="btn" type="button" data-next-step>Siguiente&nbsp; →</button>
+                            </div>
+                        </section>
+
+                        <section class="form-step" data-form-step="2">
+                            <h2>¿Cómo te contactamos?</h2>
+                            <p class="form-hint">Un diseñador revisará tu idea y podrá conversar contigo para preparar una cotización.</p>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label" for="customer-name">Tu nombre</label>
+                                    <input class="field" id="customer-name" name="name" required placeholder="Nombre y apellido">
+                                </div>
+                                <div>
+                                    <label class="form-label" for="customer-email">Correo electrónico</label>
+                                    <input class="field" id="customer-email" name="email" type="email" required placeholder="tucorreo@ejemplo.cl">
+                                </div>
+                                <div>
+                                    <label class="form-label" for="customer-phone">WhatsApp</label>
+                                    <input class="field" id="customer-phone" name="phone" type="tel" placeholder="+56 9 1234 5678">
+                                </div>
+                                <div>
+                                    <label class="form-label" for="customer-city">Comuna o ciudad</label>
+                                    <input class="field" id="customer-city" name="city" placeholder="Ej. Santiago, Ñuñoa">
+                                </div>
+                            </div>
+                            <label class="muted" style="display: flex; align-items: flex-start; gap: 9px; margin-top: 17px; font-size: 11px;">
+                                <input type="checkbox" required style="accent-color: var(--lime); margin-top: 1px;">
+                                Acepto que Change Future me contacte para conversar sobre este proyecto.
+                            </label>
+                            <div class="wizard-footer">
+                                <button class="btn secondary" type="button" data-prev-step>← Volver</button>
+                                <span class="step-count">Paso 3 de 3</span>
+                                <button class="btn" type="submit">Enviar mi idea&nbsp; →</button>
+                            </div>
+                        </section>
+
+                        <section class="form-step" data-form-step="3">
+                            <div class="empty-state">
+                                <div class="empty-icon">✓</div>
+                                <h2>¡Tu idea ya está en camino!</h2>
+                                <p>Este formulario es una vista previa: todavía no envía solicitudes a un correo o servidor.</p>
+                                <button class="btn secondary" type="button" data-restart>Crear otra idea</button>
+                            </div>
+                        </section>
+                    </form>
+
+                    <aside class="preview-panel">
+                        <h2 class="summary-title">Así va tomando forma</h2>
+                        <div class="preview-art"><span>CF</span></div>
+                        <div class="summary-row"><span>Proyecto</span><b id="summary-kind">Por definir</b></div>
+                        <div class="summary-row"><span>Descripción</span><b id="summary-idea">Cuéntanos tu idea</b></div>
+                        <div class="summary-row"><span>Tamaño</span><b id="summary-size">Aún no definido</b></div>
+                        <div class="summary-row"><span>Unidades</span><b id="summary-quantity">1 unidad</b></div>
+                        <div class="summary-row"><span>Acabado</span><b id="summary-color">Por conversar</b></div>
+                        <p class="notice" style="margin-top: 15px;">
+                            Cada proyecto es único. El valor final depende del diseño, el tamaño y los materiales.
+                        </p>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="section surface" id="proceso">
+            <div class="wrap">
+                <div class="section-heading">
+                    <div><div class="eyebrow">UN PROCESO CERCANO</div><h2>De la idea a <span class="lime">tus manos</span></h2></div>
+                </div>
+                <div class="why-grid">
+                    <article class="why-card"><i>✎</i><h3>Cuéntanos tu idea</h3><p>Con lo que tengas, partimos.</p></article>
+                    <article class="why-card"><i>◌</i><h3>La diseñamos contigo</h3><p>Validamos medidas y detalles.</p></article>
+                    <article class="why-card"><i>⌁</i><h3>La hacemos realidad</h3><p>Impresión 3D hecha en Chile.</p></article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-top">
+                <a class="brand" href="index.html"><span class="brand-mark">CF</span><span>Change <em>Future</em></span></a>
+                <nav class="footer-links">
+                    <a href="index.html">Inicio</a><a href="catalogo.html">Catálogo</a>
+                    <a href="crea-desde-cero.html">Crea desde cero</a><a href="nosotros.html">Nosotros</a><a href="carrito.html">Carrito</a>
+                </nav>
+                <span>Impresión 3D · Diseño · Personalización</span>
+            </div>
+            <div class="footer-bottom"><span>© 2026 Change Future.</span><span>Hecho en Chile, pensado para ti.</span></div>
+        </div>
+    </footer>
+    <div class="toast" data-toast></div>
+</body>
+</html>

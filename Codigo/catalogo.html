@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#090b1b">
+    <meta name="description" content="Explora los productos impresos en 3D de Change Future.">
+    <title>Catálogo | Change Future</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="assets/js/app.js"></script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="wrap nav">
+            <a class="brand" href="index.html"><span class="brand-mark">CF</span><span>Change <em>Future</em></span></a>
+            <button class="menu-toggle" data-menu-toggle aria-label="Abrir menú">☰</button>
+            <nav class="nav-links" data-nav>
+                <a href="index.html">Inicio</a>
+                <a class="active" href="catalogo.html">Catálogo</a>
+                <a href="crea-desde-cero.html">Crea desde cero</a>
+                <a href="nosotros.html">Nosotros</a>
+                
+            </nav>
+            <div class="nav-actions">
+                <a class="cart-link" href="carrito.html" aria-label="Carrito">🛒 <span class="cart-count" data-cart-count>0</span></a>
+                <a class="login-link" href="login.html" data-account-link>Ingresar</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="wrap hero-grid">
+                <div>
+                    <div class="eyebrow">NUESTRO CATÁLOGO</div>
+                    <h1>Productos 3D<br><span class="lime">listos para ti.</span></h1>
+                    <p class="hero-copy">
+                        Diseños únicos, funcionales y personalizables, hechos con impresión 3D.
+                        Encuentra una pieza que se adapte a ti.
+                    </p>
+                    <div class="search-sort">
+                        <input class="field search" type="search" placeholder="Buscar productos..." aria-label="Buscar productos" data-search>
+                        <span class="muted" style="font-size: 11px;">Diseños con carácter y propósito</span>
+                    </div>
+                </div>
+                <div class="hero-art">
+                    <img src="assets/images/product-placeholder.svg" alt="Vista previa de un macetero geométrico impreso en 3D">
+                    <div class="art-label">TU PRÓXIMA IDEA<b>ESTÁ AQUÍ</b></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="wrap">
+                <div class="catalog-tools">
+                    <div class="filters" aria-label="Filtrar por categoría">
+                        <button class="filter-chip active" data-category="Todos">Todos</button>
+                        <button class="filter-chip" data-category="Maceteros">Maceteros</button>
+                        <button class="filter-chip" data-category="Llaveros">Llaveros</button>
+                        <button class="filter-chip" data-category="Soportes">Soportes</button>
+                        <button class="filter-chip" data-category="Organizadores">Organizadores</button>
+                        <button class="filter-chip" data-category="Decoración">Decoración</button>
+                        <button class="filter-chip" data-category="Gaming">Gaming</button>
+                        <button class="filter-chip" data-category="Figuras 3D">Figuras 3D</button>
+                        <button class="filter-chip" data-category="Automotriz">Automotriz</button>
+                    </div>
+                    <div class="search-sort">
+                        <label class="muted" for="sort" style="font-size: 12px;">Ordenar:</label>
+                        <select class="field" id="sort" data-sort>
+                            <option value="recommended">Recomendados</option>
+                            <option value="price-low">Precio: menor a mayor</option>
+                            <option value="price-high">Precio: mayor a menor</option>
+                            <option value="name">Nombre</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="muted" data-results style="margin: 0 0 16px; font-size: 12px;"></p>
+                <div class="product-grid" data-catalog-grid></div>
+            </div>
+        </section>
+
+        <section class="section surface">
+            <div class="wrap">
+                <div class="benefits">
+                    <article class="benefit"><i>♧</i><h3>Envíos a todo Chile</h3><p>Coordinamos la entrega contigo.</p></article>
+                    <article class="benefit"><i>◇</i><h3>Compra segura</h3><p>Te explicamos cada paso con claridad.</p></article>
+                    <article class="benefit"><i>✧</i><h3>Productos de calidad</h3><p>Impresión 3D y terminaciones cuidadas.</p></article>
+                    <article class="benefit"><i>♡</i><h3>Soporte personalizado</h3><p>Te ayudamos a encontrar lo que buscas.</p></article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-top">
+                <a class="brand" href="index.html"><span class="brand-mark">CF</span><span>Change <em>Future</em></span></a>
+                <nav class="footer-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="catalogo.html">Catálogo</a>
+                    <a href="crea-desde-cero.html">Crea desde cero</a>
+                    <a href="nosotros.html">Nosotros</a>
+                    <a href="carrito.html">Carrito</a>
+                </nav>
+                <span>Impresión 3D · Diseño · Personalización</span>
+            </div>
+            <div class="footer-bottom"><span>© 2026 Change Future.</span><span>Hecho en Chile, pensado para ti.</span></div>
+        </div>
+    </footer>
+    <div class="toast" data-toast></div>
+</body>
+</html>
+
