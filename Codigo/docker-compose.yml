@@ -1,0 +1,80 @@
+# Levanta todo Change Future: docker compose up --build
+# Frontend: http://localhost:5173 · Gateway: http://localhost:5000/api/health
+
+x-flask-env: &flask-env
+  JWT_SECRET: ${JWT_SECRET:-cambia-esta-clave-en-produccion}
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: changefuture
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changefuture}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U changefuture"]
+      interval: 5s
+      retries: 10
+
+  usuarios:
+    build: ./backend/servicio-usuarios
+    environment:
+      <<: *flask-env
+      DATABASE_URL: postgresql://changefuture:${POSTGRES_PASSWORD:-changefuture}@postgres:5432/usuarios_db
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  catalogo:
+    build: ./backend/servicio-catalogo
+    environment:
+      <<: *flask-env
+      DATABASE_URL: postgresql://changefuture:${POSTGRES_PASSWORD:-changefuture}@postgres:5432/catalogo_db
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  pedidos:
+    build: ./backend/servicio-pedidos
+    environment:
+      <<: *flask-env
+      DATABASE_URL: postgresql://changefuture:${POSTGRES_PASSWORD:-changefuture}@postgres:5432/pedidos_db
+      CATALOGO_URL: http://catalogo:5002
+    depends_on:
+      postgres: { condition: service_healthy }
+      catalogo: { condition: service_started }
+
+  personalizacion:
+    build: ./backend/servicio-personalizacion
+    environment:
+      <<: *flask-env
+      DATABASE_URL: postgresql://changefuture:${POSTGRES_PASSWORD:-changefuture}@postgres:5432/personalizacion_db
+      UPLOAD_DIR: /app/uploads
+    volumes:
+      - uploads:/app/uploads
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  gateway:
+    build: ./backend/gateway
+    environment:
+      USUARIOS_URL: http://usuarios:5001
+      CATALOGO_URL: http://catalogo:5002
+      PEDIDOS_URL: http://pedidos:5003
+      PERSONALIZACION_URL: http://personalizacion:5004
+      CORS_ORIGINS: http://localhost:5173
+    ports:
+      - "5000:5000"
+    depends_on: [usuarios, catalogo, pedidos, personalizacion]
+
+  frontend:
+    build: ./frontend
+    environment:
+      GATEWAY_URL: http://gateway:5000
+    ports:
+      - "5173:5173"
+    depends_on: [gateway]
+
+volumes:
+  pgdata:
+  uploads:

@@ -1,0 +1,7 @@
+# Dependencias para correr todos los servicios en tu computador (sin Docker).
+# Usa SQLite, así que no necesita PostgreSQL.
+Flask>=3.1
+Flask-SQLAlchemy>=3.1
+flask-cors>=5.0
+PyJWT>=2.10
+requests>=2.32
