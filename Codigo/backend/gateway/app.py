@@ -15,6 +15,10 @@ SERVICES = {
     'pedidos': os.getenv('PEDIDOS_URL', 'http://127.0.0.1:5003'),
     'personalizacion': os.getenv('PERSONALIZACION_URL', 'http://127.0.0.1:5004'),
 }
+# Servicios internos: no se exponen al navegador, solo se revisa que estén encendidos.
+INTERNAL_SERVICES = {
+    'procesamiento': os.getenv('PROCESAMIENTO_URL', 'http://127.0.0.1:5005'),
+}
 
 # Cabeceras que no deben copiarse entre la petición original y la reenviada.
 HOP_HEADERS = {'host', 'content-length', 'connection', 'transfer-encoding', 'content-encoding'}
@@ -26,7 +30,7 @@ CORS(app, origins=os.getenv('CORS_ORIGINS', 'http://localhost:5173').split(','))
 @app.get('/api/health')
 def health():
     status = {}
-    for name, url in SERVICES.items():
+    for name, url in (SERVICES | INTERNAL_SERVICES).items():
         try:
             ok = requests.get(f'{url}/health', timeout=2).ok
         except requests.RequestException:
@@ -50,7 +54,7 @@ def proxy(service, path):
             params=request.args,
             data=request.get_data(),
             headers=headers,
-            timeout=10,
+            timeout=90,  # generar una propuesta 3D puede tardar
         )
     except requests.RequestException:
         return jsonify(error=f'El servicio "{service}" no responde'), 503

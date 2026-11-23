@@ -4,4 +4,4 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 EXPOSE 5004
-CMD ["gunicorn", "--bind", "0.0.0.0:5004", "--workers", "2", "--preload", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5004", "--workers", "2", "--preload", "--timeout", "120", "app:app"]

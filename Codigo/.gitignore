@@ -7,3 +7,8 @@ venv/
 *.db
 uploads/
 .env
+.pytest_cache/
+
+.env.*
+!.env.example
+.respaldo-local/

@@ -2,7 +2,7 @@
 # Frontend: http://localhost:5173 · Gateway: http://localhost:5000/api/health
 
 x-flask-env: &flask-env
-  JWT_SECRET: ${JWT_SECRET:-cambia-esta-clave-en-produccion}
+  JWT_SECRET: ${JWT_SECRET:-cambia-esta-clave-secreta-en-produccion}
 
 services:
   postgres:
@@ -23,6 +23,14 @@ services:
     environment:
       <<: *flask-env
       DATABASE_URL: postgresql://changefuture:${POSTGRES_PASSWORD:-changefuture}@postgres:5432/usuarios_db
+      FRONTEND_URL: http://localhost:5173
+      # Para enviar correos reales de recuperación, completa estas variables (si no, el enlace sale en el log)
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_APP_PASSWORD: ${SMTP_APP_PASSWORD:-}
+      CF_ADMIN_EMAIL: ${CF_ADMIN_EMAIL:-changefuture.store@gmail.com}
     depends_on:
       postgres: { condition: service_healthy }
 
@@ -31,6 +39,9 @@ services:
     environment:
       <<: *flask-env
       DATABASE_URL: postgresql://changefuture:${POSTGRES_PASSWORD:-changefuture}@postgres:5432/catalogo_db
+      UPLOAD_DIR: /app/uploads
+    volumes:
+      - imagenes-productos:/app/uploads
     depends_on:
       postgres: { condition: service_healthy }
 
@@ -40,6 +51,24 @@ services:
       <<: *flask-env
       DATABASE_URL: postgresql://changefuture:${POSTGRES_PASSWORD:-changefuture}@postgres:5432/pedidos_db
       CATALOGO_URL: http://catalogo:5002
+      PERSONALIZACION_URL: http://personalizacion:5004
+      USUARIOS_URL: http://usuarios:5001
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_APP_PASSWORD: ${SMTP_APP_PASSWORD:-}
+      CF_ADMIN_EMAIL: ${CF_ADMIN_EMAIL:-changefuture.store@gmail.com}
+      TRANSFERENCIA_TITULAR: ${TRANSFERENCIA_TITULAR:-Change Future}
+      TRANSFERENCIA_RUT: ${TRANSFERENCIA_RUT:-18.966.548-2}
+      TRANSFERENCIA_BANCO: ${TRANSFERENCIA_BANCO:-Mercado Pago}
+      TRANSFERENCIA_TIPO_CUENTA: ${TRANSFERENCIA_TIPO_CUENTA:-Cuenta vista}
+      TRANSFERENCIA_NUMERO_CUENTA: ${TRANSFERENCIA_NUMERO_CUENTA:-1026449772}
+      TRANSFERENCIA_CORREO: ${TRANSFERENCIA_CORREO:-changefuture.store@gmail.com}
+      UPLOAD_COMPROBANTES_DIR: /app/uploads/comprobantes
+    volumes:
+      - comprobantes-pago:/app/uploads/comprobantes
     depends_on:
       postgres: { condition: service_healthy }
       catalogo: { condition: service_started }
@@ -50,10 +79,15 @@ services:
       <<: *flask-env
       DATABASE_URL: postgresql://changefuture:${POSTGRES_PASSWORD:-changefuture}@postgres:5432/personalizacion_db
       UPLOAD_DIR: /app/uploads
+      PROCESAMIENTO_URL: http://procesamiento:5005
     volumes:
       - uploads:/app/uploads
     depends_on:
       postgres: { condition: service_healthy }
+
+  # Servicio interno: convierte la imagen de referencia en un modelo 3D (STL)
+  procesamiento:
+    build: ./backend/servicio-procesamiento
 
   gateway:
     build: ./backend/gateway
@@ -62,10 +96,11 @@ services:
       CATALOGO_URL: http://catalogo:5002
       PEDIDOS_URL: http://pedidos:5003
       PERSONALIZACION_URL: http://personalizacion:5004
+      PROCESAMIENTO_URL: http://procesamiento:5005
       CORS_ORIGINS: http://localhost:5173
     ports:
       - "5000:5000"
-    depends_on: [usuarios, catalogo, pedidos, personalizacion]
+    depends_on: [usuarios, catalogo, pedidos, personalizacion, procesamiento]
 
   frontend:
     build: ./frontend
@@ -78,3 +113,5 @@ services:
 volumes:
   pgdata:
   uploads:
+  imagenes-productos:
+  comprobantes-pago:

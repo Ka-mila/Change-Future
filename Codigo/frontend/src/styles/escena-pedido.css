@@ -1,0 +1,88 @@
+.cf-printer-scene {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 24px;
+    isolation: isolate;
+}
+
+.cf-printer-spool { transform-box: view-box; transform-origin: 70px 129px; }
+.cf-printer-gantry { transform: translateY(-28px); }
+.cf-printer-fan { transform-box: view-box; transform-origin: 234px 153px; }
+.cf-printer-wheel-back { transform-box: view-box; transform-origin: 154px 257px; }
+.cf-printer-wheel-front { transform-box: view-box; transform-origin: 321px 257px; }
+
+.cf-printer-running {
+    --cf-printer-build-cycle: 8s;
+    --cf-printer-build-start: -1.6s;
+}
+.cf-printer-running .cf-printer-spool { animation: cf-printer-reel-turn 5.6s linear infinite; }
+.cf-printer-running .cf-printer-filament { stroke-dasharray: 4 8; animation: cf-printer-filament-feed .8s linear infinite; }
+.cf-printer-running .cf-printer-gantry { animation: cf-printer-build-height var(--cf-printer-build-cycle) linear var(--cf-printer-build-start) infinite; }
+.cf-printer-running .cf-printer-head { animation: cf-printer-nozzle-pass 1.25s linear infinite; }
+.cf-printer-running .cf-printer-fan { animation: cf-printer-reel-turn 1.1s linear infinite; }
+.cf-printer-running .cf-printer-layer-mask { animation: cf-printer-build-layers var(--cf-printer-build-cycle) linear var(--cf-printer-build-start) infinite; }
+.cf-printer-running .cf-printer-piece { animation: cf-printer-piece-cycle var(--cf-printer-build-cycle) linear var(--cf-printer-build-start) infinite; }
+.cf-printer-running .cf-printer-layer-light { animation: cf-printer-layer-highlight var(--cf-printer-build-cycle) linear var(--cf-printer-build-start) infinite; filter: drop-shadow(0 0 3px #b9ff66); }
+.cf-printer-running .cf-printer-extrusion { filter: drop-shadow(0 0 4px #c9ff8d); }
+.cf-printer-running .cf-printer-status-light { animation: cf-printer-led-breathe 2.4s ease-in-out infinite; }
+.cf-printer-running .cf-printer-bed-glow { animation: cf-printer-bed-breathe 2.5s ease-in-out infinite; }
+.cf-printer-running .cf-printer-screen-trace { stroke-dasharray: 13 6; animation: cf-printer-filament-feed 1.4s linear infinite; }
+
+.cf-printer-delivery-active .cf-printer-truck-body { animation: cf-printer-truck-float 3.2s ease-in-out infinite; }
+.cf-printer-delivery-active .cf-printer-wheel { animation: cf-printer-reel-turn 6s linear infinite; }
+.cf-printer-delivery-active .cf-printer-road-marks { animation: cf-printer-road-travel 2.4s linear infinite; }
+
+@keyframes cf-printer-reel-turn { to { transform: rotate(360deg); } }
+@keyframes cf-printer-filament-feed { to { stroke-dashoffset: -24; } }
+
+/* Cuatro pasadas por ciclo: el cabezal cubre la anchura de la pieza. */
+@keyframes cf-printer-nozzle-pass {
+    0%, 100% { transform: translate(-30px, 0); }
+    18% { transform: translate(30px, 0); }
+    25% { transform: translate(30px, -2px); }
+    43% { transform: translate(-30px, -2px); }
+    50% { transform: translate(-30px, 1px); }
+    68% { transform: translate(30px, 1px); }
+    75% { transform: translate(30px, 3px); }
+    93% { transform: translate(-30px, 3px); }
+}
+
+/* Boquilla y clip comparten duración y fase para seguir la misma capa. */
+@keyframes cf-printer-build-height {
+    0%, 5% { transform: translateY(47px); }
+    84%, 97% { transform: translateY(-28px); }
+    100% { transform: translateY(47px); }
+}
+@keyframes cf-printer-build-layers {
+    0%, 5% { y: 239px; height: 6px; }
+    84%, 99% { y: 164px; height: 81px; }
+    100% { y: 239px; height: 6px; }
+}
+@keyframes cf-printer-piece-cycle {
+    0% { opacity: .7; }
+    8%, 94% { opacity: 1; }
+    97%, 99.9% { opacity: 0; }
+    100% { opacity: .7; }
+}
+@keyframes cf-printer-layer-highlight {
+    0%, 5% { transform: translateY(47px); opacity: .9; }
+    84% { transform: translateY(-28px); opacity: 1; }
+    94%, 100% { transform: translateY(-28px); opacity: 0; }
+}
+@keyframes cf-printer-led-breathe { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+@keyframes cf-printer-bed-breathe { 0%, 100% { opacity: .14; } 50% { opacity: .36; } }
+@keyframes cf-printer-truck-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.8px); } }
+@keyframes cf-printer-road-travel { to { transform: translateX(-59px); } }
+
+[data-animation-paused="true"] .cf-printer-scene *,
+.cf-printer-scene[data-animation-paused="true"] * { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+    .cf-printer-scene:not([data-motion-enabled='true']) * { animation: none !important; transition: none !important; }
+    .cf-printer-scene:not([data-motion-enabled='true']) .cf-printer-gantry { transform: translateY(-28px) !important; }
+    .cf-printer-scene:not([data-motion-enabled='true']) .cf-printer-head { transform: none !important; }
+    .cf-printer-scene:not([data-motion-enabled='true']) .cf-printer-layer-mask { y: 163px !important; height: 82px !important; opacity: 1 !important; }
+    .cf-printer-scene:not([data-motion-enabled='true']) .cf-printer-layer-light { opacity: 0 !important; }
+}

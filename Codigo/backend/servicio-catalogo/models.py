@@ -45,4 +45,5 @@ class Producto(db.Model):
             'imagen': self.imagen_principal,
             'stock': self.stock,
             'destacado': self.destacado,
+            'activo': self.estado == 'activo',
         }

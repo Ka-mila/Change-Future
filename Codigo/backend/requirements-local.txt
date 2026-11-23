@@ -5,3 +5,6 @@ Flask-SQLAlchemy>=3.1
 flask-cors>=5.0
 PyJWT>=2.10
 requests>=2.32
+Pillow>=11.0
+numpy>=2.1
+python-dotenv>=1.0

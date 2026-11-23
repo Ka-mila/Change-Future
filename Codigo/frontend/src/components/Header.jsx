@@ -27,12 +27,14 @@ export default function Header() {
                     {links.map((link) => (
                         <NavLink key={link.to} to={link.to} end={link.end}>{link.label}</NavLink>
                     ))}
+                    {user && <NavLink to="/mis-pedidos">Mis pedidos</NavLink>}
+                    {user?.rol === 'administrador' && <NavLink to="/admin">Administración</NavLink>}
                 </nav>
                 <div className="nav-actions">
                     <Link className="cart-link" to="/carrito" aria-label="Carrito">
                         🛒 <span className="cart-count">{count}</span>
                     </Link>
-                    <Link className="login-link" to="/login">
+                    <Link className="login-link" to={user ? '/perfil' : '/login'}>
                         {user ? `Hola, ${user.nombre.split(' ')[0]}` : 'Ingresar'}
                     </Link>
                 </div>

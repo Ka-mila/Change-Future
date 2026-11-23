@@ -31,7 +31,7 @@ export function CartProvider({ children }) {
             const existing = current.find((item) => item.id === product.id);
             if (existing) {
                 return current.map((item) => item.id === product.id
-                    ? { ...item, cantidad: item.cantidad + cantidad }
+                    ? { ...item, cantidad: Math.min(99, item.cantidad + cantidad) }
                     : item);
             }
             return [...current, {
@@ -40,6 +40,8 @@ export function CartProvider({ children }) {
                 precio: product.precio,
                 imagen: product.imagen,
                 categoria: product.categoria,
+                // Solo en diseños de "Crea desde cero": el pedido valida el precio con este código
+                codigo_solicitud: product.codigo_solicitud,
                 cantidad
             }];
         });
@@ -47,7 +49,7 @@ export function CartProvider({ children }) {
     }
 
     function setQuantity(id, cantidad) {
-        const value = Math.max(1, Math.floor(Number(cantidad) || 1));
+        const value = Math.min(99, Math.max(1, Math.floor(Number(cantidad) || 1)));
         setItems((current) => current.map((item) => item.id === id ? { ...item, cantidad: value } : item));
     }
 
